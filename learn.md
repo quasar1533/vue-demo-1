@@ -1,7 +1,9 @@
 ## 学习Vue.js
 * 安装完整版(生产版本)vue，使用cdn，完整版vue可以直接操作界面public/index.html的内容(含有compiler)。  `vue.js`
 * 非完整版(run-time版)，不支持从index.html中获取视图。
+
   不完整版用于开发使用，配合render使用.
+  
   完整版虽然很方便，但非完整版的意义在于更加独立。
 * vue单文件组件概念：
   * vue的完整版比开发版体积要大40%左右。为了节省用户的体积，我们平时使用完整版进行开发，但build产品时，webpack的vue-loader插件会将完整版编译成非完整版，将vue模板编译为一个可以使用的对象。
@@ -11,11 +13,11 @@
 ### Vue options
 * `const vm = new Vue(options);`
   options 是Vue函数的构造选项，大有文章，查看文档
-  1.数据  data、 props、 methods ....
-  2.DOM  render函数 与 template 二选一
-  3.生命周期钩子  created-->mounted(挂载)-->updated-->destroyed   总共11个
-  4.资源  directives、 filter、 components
-  5.组合  parent、 mixin、 extends、 provide、 inject
+  1. 数据  data、 props、 methods ....
+  2. DOM  render函数 与 template 二选一
+  3. 生命周期钩子  created-->mounted(挂载)-->updated-->destroyed   总共11个
+  4. 资源  directives、 filter、 components
+  5. 组合  parent、 mixin、 extends、 provide、 inject
 #### el
 * el与$mount 可以相互替换
 #### data
