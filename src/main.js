@@ -1,91 +1,60 @@
-import Lifecycle from "./Demo1.vue";
-// import Vue from "vue";
-const Vue = window.Vue;
-// import App from "./App.vue";
+import Vue from "vue";
+// import "./proxy.js";
 
 Vue.config.productionTip = false;
 
-import Demo1 from "./component1.vue";
-import Props from "./props.vue";
+const myData = {
+  n: 1,
+  obj: {
+    a: 10,
+    // b: undefined,
+    // predefined b
+  },
+  array: [1, 2, 3],
+};
+console.dir(myData);
+//该对象会自动被封装为Vue的数据对象
+console.log(myData.array);
+//也会被自动封装
 
-Vue.component("Demo2", {
-  template: `
-    <div>demo2</div>
-  `,
-});
-// new Vue({
-//   el: "#app",
-//   render(h) {
-//     return h(demo);
-//   },
-// });
-// same as ↓
-// new Vue({
-//   render(h) {
-//     return h(demo);
-//   },
-// }).$mount("#app");
-// also same as ↓
-new Vue({
-  components: {
-    Demo1,
-    Demo3: {
-      data() {
-        return {
-          n: 11,
-        };
-      },
-      template: `
-        <div>my number {{n}}</div>
-      `,
-    },
-    Lifecycle,
-    Props,
-  },
-  data() {
-    return {
-      n: 1,
-      array: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      visibility: true,
-    };
-  },
+const vm = new Vue({
+  components: {},
+  data: myData,
   template: `
     <div class="main">
-      {{ n }}
-      <button @click="add">+1</button>
+      {{n}}
+      <button @click="add">+10</button>
       <hr>
-      {{arrayFilter()}}
+      {{obj}}
+      {{obj.b}}
+      <button @click="setB">set b</button>
       <hr>
-      <Demo1/>
+      {{array}}
+      <button @click="setNew">set new items</button>
       <hr>
-      <Demo2/>
-      <hr>
-      <Demo3/>
-      <hr>
-      <div>lifecycle hooks example</div>
-      <button @click="toggle">toggle</button>
-      <br/>
-      <Lifecycle v-if="visibility === true"/>
-      <hr>
-      <div>synchronous data update</div>
-      {{ n }}
-      <Props :message="n" :fn="multiple"/>
+      
     </div>
   `,
   methods: {
     add() {
-      this.n += 1;
+      this.n += 10;
     },
-    multiple() {
-      this.n *= 2;
+    setB() {
+      // this.obj.b = 11;
+      // 上述代码无效
+      this.$set(this.obj, "b", 11);
+      // 等价于 Vue.set(this.obj, "b", 11);
+      console.log(vm.obj);
     },
-    arrayFilter() {
-      console.log("arrayFilter called");
-      return this.array.filter((item) => item % 2 === 0);
-    },
-    toggle() {
-      this.visibility = !this.visibility;
+    setNew() {
+      // this.array[3] = 4;
+      // 上面代码同理是无效的
+      this.array.push(4, 5, 6);
     },
   },
 }).$mount("#app");
-// 上面都是Vue实例
+
+console.log(vm);
+console.log(vm.obj);
+vm.n = 2;
+// data选项中的数据会被传入Vue实例中，且可以被修改并相应的页面中
