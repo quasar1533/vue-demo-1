@@ -1,60 +1,93 @@
+// import Vue from "vue/dist/vue.js";
+// 上面代码也可以引入完整版Vue
+
 import Vue from "vue";
-// import "./proxy.js";
 
 Vue.config.productionTip = false;
 
-const myData = {
-  n: 1,
-  obj: {
-    a: 10,
-    // b: undefined,
-    // predefined b
-  },
-  array: [1, 2, 3],
-};
-console.dir(myData);
-//该对象会自动被封装为Vue的数据对象
-console.log(myData.array);
-//也会被自动封装
+import Example1 from "./example1.vue";
+import Example2 from "./example2.vue";
+import Example3 from "./example3.vue";
+import Example4 from "./example4.vue";
+import Example5 from "./example5.vue";
+
+// let id = 0;
+// function createUser(name, gender) {
+//   id += 1;
+//   return {id, name, gender};
+// }
 
 const vm = new Vue({
-  components: {},
-  data: myData,
+  components: {
+    Example1,
+    Example2,
+    Example3,
+    Example4,
+    Example5,
+  },
+  data: {
+    user: {
+      nickname: "jky",
+      email: "1029230641@qq.com",
+      phone: "15940337017",
+    },
+    n: 1,
+  },
+  computed: {
+    displayName() {
+      const user = this.user;
+      return user.nickname || user.email || user.phone;
+    },
+    displayName2: {
+      get() {
+        const user = this.user;
+        return user.nickname || user.email || user.phone;
+      },
+      set(value) {
+        const user = this.user;
+        user.nickname = value;
+      },
+    },
+  },
   template: `
     <div class="main">
-      {{n}}
-      <button @click="add">+10</button>
+      {{user.nickname || user.phone || user.email}}
+      <br/>
+      <div>
+        {{displayName}}
+      </div>
+      <div>
+        {{displayName2}}
+        <button @click="setNew">new name</button>
+      </div>
+      <hr/>
+      <Example2/>
       <hr>
-      {{obj}}
-      {{obj.b}}
-      <button @click="setB">set b</button>
+      <Example3/>
       <hr>
-      {{array}}
-      <button @click="setNew">set new items</button>
+      <Example4/>
       <hr>
-      
+      <Example5/>
+      <hr>
+      {{ n }}
     </div>
   `,
+  created() {
+    this.$watch(
+      "n",
+      function() {
+        console.log("n changed");
+      },
+      { immediate: true }
+    );
+  },
   methods: {
-    add() {
-      this.n += 10;
-    },
-    setB() {
-      // this.obj.b = 11;
-      // 上述代码无效
-      this.$set(this.obj, "b", 11);
-      // 等价于 Vue.set(this.obj, "b", 11);
-      console.log(vm.obj);
-    },
     setNew() {
-      // this.array[3] = 4;
-      // 上面代码同理是无效的
-      this.array.push(4, 5, 6);
+      this.displayName2 = "typ";
     },
   },
 }).$mount("#app");
 
+console.log(Example1);
 console.log(vm);
-console.log(vm.obj);
-vm.n = 2;
-// data选项中的数据会被传入Vue实例中，且可以被修改并相应的页面中
+console.log(vm.$children[0].users);
