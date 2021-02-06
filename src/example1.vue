@@ -1,15 +1,18 @@
 <template>
-  <div>
-    <div class="btn">
-      <button @click="showAll">show all</button>
-      <button @click="showMale">show male</button>
-      <button @click="showFemale">show female</button>
+  <div class="main">
+    {{ display }}
+    <a @click.prevent="f1" href="http://baidu.com">百度</a>
+    <br />
+    <input @keypress.13="f2" />
+    <br />
+    <input @keypress.space="f3" />
+    <br />
+    {{ n }}
+    <div class="btn" @click="checkClick($event)">
+      <div class="btnAdd" @click.stop="say">+1</div>
+      <div class="btnAdd">+1</div>
+      <div class="btnAdd">+1</div>
     </div>
-    <ul>
-      <li v-for="(u, index) in displayUsers" :key="index">
-        {{ u.name }} - {{ u.gender }}
-      </li>
-    </ul>
   </div>
 </template>
 
@@ -17,34 +20,45 @@
 export default {
   data() {
     return {
-      users: [
-        { id: 1, name: "John", gender: "male" },
-        { id: 2, name: "Tom", gender: "male" },
-        { id: 3, name: "Marry", gender: "female" },
-        { id: 4, name: "Rose", gender: "female" },
-      ],
-      displayUsers: [],
+      display: "",
+      n: 11,
     };
   },
-  created() {
-    this.displayUsers = this.users;
-  },
   methods: {
-    showAll() {
-      this.displayUsers = this.users;
+    checkClick(e) {
+      if (e.target.className === "btnAdd") {
+        this.n += 1;
+      }
     },
-    showMale() {
-      this.displayUsers = this.users.filter((user) => user.gender === "male");
+    say() {
+      console.log("this doesn't work");
     },
-    showFemale() {
-      this.displayUsers = this.users.filter((user) => user.gender === "female");
+    f1() {
+      this.display = "nothing happend";
+    },
+    f2() {
+      this.display = "input Enter";
+    },
+    f3() {
+      this.display = "input space";
     },
   },
 };
 </script>
 
 <style scoped>
-div > .btn button {
-  margin-right: 10px;
+.main .btn {
+  border: 2px solid brown;
+  height: 30px;
+  width: 100px;
+  padding: 10px;
+}
+.main .btn .btnAdd {
+  border: 2px solid #000;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  margin-right: 8px;
+  cursor: pointer;
 }
 </style>
