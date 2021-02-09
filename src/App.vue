@@ -1,18 +1,28 @@
 <template>
   <div id="app">
- 
+    <img v-x v-y alt="Vue logo" src="./assets/logo.png" width="25%" />
+    <HelloWorld msg="Hello Vue in CodeSandbox!" />
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
-  // name: 'App',
-  // components: {
-  //   HelloWorld
-  // }
-}
+  name: "App",
+  components: {
+    HelloWorld,
+  },
+  directives: {
+    y: {
+      inserted(el) {
+        el.addEventListener("click", () => {
+          console.log("Hello y");
+        });
+      },
+    },
+  },
+};
 </script>
 
 <style lang="scss">

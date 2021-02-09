@@ -1,4 +1,7 @@
 ## 学习Vue.js
+#### 安装vue-cli
+* 使用vue-cli的选项来构建Vue项目。
+#### 关于Vue
 * 安装完整版(生产版本)vue，使用cdn，完整版vue可以直接操作界面public/index.html的内容(含有compiler)。  `vue.js`
 * 非完整版(run-time版)，不支持从index.html中获取视图。
 

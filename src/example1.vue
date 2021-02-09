@@ -1,64 +1,49 @@
 <template>
   <div class="main">
-    {{ display }}
-    <a @click.prevent="f1" href="http://baidu.com">百度</a>
+    <Child1 v-if="child1Visibility" />
+    <button @click="child1Visibility = false">X</button>
     <br />
-    <input @keypress.13="f2" />
+    <Child2 v-if="child2Visibility" />
+    <button @click="child2Visibility = false">X</button>
     <br />
-    <input @keypress.space="f3" />
+    <Child3 v-if="child3Visibility" />
+    <button @click="child3Visibility = false">X</button>
     <br />
-    {{ n }}
-    <div class="btn" @click="checkClick($event)">
-      <div class="btnAdd" @click.stop="say">+1</div>
-      <div class="btnAdd">+1</div>
-      <div class="btnAdd">+1</div>
-    </div>
+    <Child4 v-if="child4Visibility" />
+    <button @click="child4Visibility = false">X</button>
+    <br />
+    <Child5 v-if="child5Visibility" />
+    <button @click="child5Visibility = false">X</button>
+    <br />
   </div>
 </template>
 
 <script>
+import Child1 from "./components/child1.vue";
+import Child2 from "./components/child2.vue";
+import Child3 from "./components/child3.vue";
+import Child4 from "./components/child4.vue";
+import Child5 from "./components/child5.vue";
+
 export default {
+  components: {
+    Child1,
+    Child2,
+    Child3,
+    Child4,
+    Child5,
+  },
   data() {
     return {
-      display: "",
-      n: 11,
+      child1Visibility: true,
+      child2Visibility: true,
+      child3Visibility: true,
+      child4Visibility: true,
+      child5Visibility: true,
     };
-  },
-  methods: {
-    checkClick(e) {
-      if (e.target.className === "btnAdd") {
-        this.n += 1;
-      }
-    },
-    say() {
-      console.log("this doesn't work");
-    },
-    f1() {
-      this.display = "nothing happend";
-    },
-    f2() {
-      this.display = "input Enter";
-    },
-    f3() {
-      this.display = "input space";
-    },
   },
 };
 </script>
 
 <style scoped>
-.main .btn {
-  border: 2px solid brown;
-  height: 30px;
-  width: 100px;
-  padding: 10px;
-}
-.main .btn .btnAdd {
-  border: 2px solid #000;
-  height: 20px;
-  width: 20px;
-  display: inline-block;
-  margin-right: 8px;
-  cursor: pointer;
-}
 </style>
