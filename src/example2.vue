@@ -1,85 +1,39 @@
 <template>
-  <div :class="`main theme-${themeColor} theme-${fontSize}`">
-    <Child6 />
-    <button>decorate</button>
+  <div>
+    sychronous response data
     <br />
-    <Child7 />
-    <button>decorate</button>
+    {{ user }}
     <br />
-    <Child8 />
+    <label>
+      <span>id:</span>
+      <input type="text" v-model.trim="user.id" />
+    </label>
     <br />
+    <label>
+      <span>phone:</span>
+      <input type="text" v-model.number="user.phone" />
+    </label>
+    <br />
+    <label>
+      <span>email:</span>
+      <input type="text" v-model.lazy="user.email" />
+    </label>
   </div>
 </template>
 
 <script>
-import Child6 from "./components/child6.vue";
-import Child7 from "./components/child7.vue";
-import Child8 from "./components/child8.vue";
-
 export default {
-  components: {
-    Child6,
-    Child7,
-    Child8,
-  },
   data() {
     return {
-      themeColor: "blue",
-      fontSize: "normal",
+      user: {
+        id: "",
+        phone: undefined,
+        email: "",
+      },
     };
-  },
-  provide() {
-    return {
-      themeColor: this.themeColor,
-      change: this.changeThemeColor,
-      changeFontSize: this.changeFontSize,
-    };
-  },
-  methods: {
-    changeThemeColor() {
-      if (this.themeColor === "blue") {
-        this.themeColor = "red";
-      } else {
-        this.themeColor = "blue";
-      }
-    },
-    changeFontSize(size) {
-      if (["small", "big", "normal"].includes(size)) {
-        this.fontSize = size;
-      }
-    },
   },
 };
 </script>
 
-<style>
-.main button {
-  margin-top: 2px;
-}
-.main.theme-blue {
-  color: darkblue;
-}
-.main.theme-blue button {
-  background-color: blue;
-  color: white;
-}
-.main.theme-red {
-  color: darkred;
-}
-.main.theme-red button {
-  background-color: red;
-  color: white;
-}
-.main button {
-  font-size: inherit;
-}
-.main.theme-big {
-  font-size: 24px;
-}
-.main.theme-small {
-  font-size: 12px;
-}
-.main.theme-normal {
-  font-size: 18px;
-}
+<style scoped>
 </style>

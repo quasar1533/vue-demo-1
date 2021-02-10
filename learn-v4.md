@@ -13,26 +13,26 @@
   * {{obj.a}}
   * {{n + 11}}
   * {{fn(a)}}
-* 双大括号数据绑定等价于<div v-text="some expression"></div>
+* 双大括号数据绑定等价于`<div v-text="some expression"></div>`
 * 表达式解析为undefined或null时，不显示内容
 2. 多种选项
-* 富文本<div v-html="<div>xxx</div"></div>
+* 富文本`<div v-html="<div>xxx</div"></div>`
 * 不进行编译 v-pre="xxx"
-* v-bind  <img v-bind:src='xxx' /> 可简写为 <img :src='xxx' />
+* v-bind  `<img v-bind:src='xxx' />` 可简写为 `<img :src='xxx' />`
   
-  <div :style="{border: 1px solid #xxx}"></div>
-* <div v-on:click="expression">xxx</div>  可简写为 @click="expression"
-* <div v-if="expression">xxx</div>
+  `<div :style="{border: 1px solid #xxx}"></div>`
+* `<div v-on:click="expression">xxx</div>`  可简写为 @click="expression"
+* `<div v-if="expression">xxx</div>`
 
-  <div v-else-if="expression">yyy</div>
+  `<div v-else-if="expression">yyy</div>`
 
-  <div v-else="expression">zzz</div>
-* <div v-for="(value, key) in objOrArray" :key="key">xxx</div>
+  `<div v-else="expression">zzz</div>`
+* `<div v-for="(value, key) in objOrArray" :key="key">xxx</div>`
   
   规定格式必须如此，:key后面要跟唯一性的值，即对象的键名
-* 更加简化的 <div v-show="expression">xxx</div> 是语法糖，近似等于
+* 更加简化的 `<div v-show="expression">xxx</div>` 是语法糖，近似等于
 
-  <div :style="{display: expression?'block' : 'none'}">xxx</div>
+  `<div :style="{display: expression?'block' : 'none'}">xxx</div>`
 ##### 总结
 * 通过v-xxx语法操纵DOM，v-xxx是指令
 
