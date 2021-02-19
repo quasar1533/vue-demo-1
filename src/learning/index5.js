@@ -1,31 +1,35 @@
 /* eslint-disable */
-// 1. 定义 (路由) 组件。
-// 可以从其他文件 import 进来
-const Div1 = { template: '<div>div1</div>' }
-const Div2 = { template: '<div>div2</div>' }
-
-// 2. 定义路由
-// 每个路由应该映射一个组件。 其中"component" 可以是
-// 通过 Vue.extend() 创建的组件构造器，
-// 或者，只是一个组件配置对象。
-// 我们晚点再讨论嵌套路由。
-const routes = [
-  { path: '/1', component: Div1 },
-  { path: '/2', component: Div2 }
-]
-
-// 3. 创建 router 实例，然后传 `routes` 配置
-// 你还可以传别的配置参数, 不过先这么简单着吧。
-const router = new VueRouter({
-  mode: 'history',
-  routes // (缩写) 相当于 routes: routes
-})
-
-// 4. 创建和挂载根实例。
-// 记得要通过 router 配置参数注入路由，
-// 从而让整个应用都有路由功能
-const app = new Vue({
-  router
-}).$mount('#app')
-
-// 现在，应用已经启动了！
+new Vue({
+  el: "#app",
+  data: {
+    status1: "on",
+    status11: "on",
+    status2: "on",
+    status3: "on",
+    status4: "on",
+    status5: "on",
+  },
+  methods: {
+    change1() {
+      this.status1 = this.status1 === "on" ? "off" : "on";
+    },
+    change11() {
+      this.status11 = this.status11 === "on" ? "off" : "on";
+    },
+    change2() {
+      this.status2 = this.status2 === "on" ? "off" : "on";
+    },
+    change3() {
+      this.status3 = this.status3 === "on" ? "off" : "on";
+    },
+    change4() {
+      this.status4 = this.status4 === "on" ? "off" : "on";
+    },
+    change5() {
+      this.status5 = this.status5 === "on" ? "off" : "on";
+    },
+    change6() {
+      this.status6 = this.status6 === "on" ? "off" : "on";
+    },
+  },
+});

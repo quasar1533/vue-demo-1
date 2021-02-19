@@ -5,20 +5,23 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
   <title>Document</title>
 </head>
 
 <body>
-  <div>
-    <a href="/1" class="history">to 1</a>
-    <a href="/2" class="history">to 2</a>
-    <a href="/3" class="history">to 3</a>
-    <a href="/4" class="history">to 4</a>
+  <div id="example-4">
+    <button @click="show = !show">
+      Toggle
+    </button>
+    <transition v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:leave="leave" v-bind:css="false">
+      <p v-if="show">
+        Demo
+      </p>
+    </transition>
   </div>
-  <div id="app"></div>
- 
-  <div id="div404" style="display: none;">404 Not Found</div>
-  <script src="../index4.js"></script>
+  <script src="./index4.js"></script>
 </body>
 
 </html>

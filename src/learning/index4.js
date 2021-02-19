@@ -1,55 +1,27 @@
-const div1 = document.createElement("div");
-div1.innerHTML = 1;
-const div2 = document.createElement("div");
-div2.innerHTML = 2;
-const div3 = document.createElement("div");
-div3.innerHTML = 3;
-const div4 = document.createElement("div");
-div4.innerHTML = 4;
-const routeTable = {
-  "/1": div1,
-  "/2": div2,
-  "/3": div3,
-  "/4": div4,
-};
-
-function route(container) {
-  const app = document.querySelector(`#${container}`);
-  let number = window.localStorage.getItem("path");
-  number = number || "/1";
-  let div = routeTable[number];
-  if (!div) {
-    div = document.querySelector("#div404");
-  }
-  div.style.display = "block";
-
-  if (app.children.length > 0) {
-    if (div !== app.children[0]) {
-      app.children[0].style.display = "none";
+/* eslint-disable */
+new Vue({
+  el: '#example-4',
+  data: {
+    show: false
+  },
+  methods: {
+    beforeEnter: function (el) {
+      el.style.opacity = 0
+      el.style.transformOrigin = 'left'
+    },
+    enter: function (el, done) {
+      Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 })
+      Velocity(el, { fontSize: '1em' }, { complete: done })
+    },
+    leave: function (el, done) {
+      Velocity(el, { translateX: '15px', rotateZ: '50deg' }, { duration: 600 })
+      Velocity(el, { rotateZ: '100deg' }, { loop: 2 })
+      Velocity(el, {
+        rotateZ: '45deg',
+        translateY: '30px',
+        translateX: '30px',
+        opacity: 0
+      }, { complete: done })
     }
-    document.body.appendChild(app.children[0]);
   }
-  app.appendChild(div);
-}
-function onPushState() {
-  route("app");
-}
-
-const allATags = document.querySelectorAll("a.history");
-for (let a of allATags) {
-  a.addEventListener("click", (e) => {
-    e.preventDefault();
-    const href = a.getAttribute("href");
-    window.localStorage.setItem("path", href);
-    onPushState();
-  });
-}
-
-route("app");
-
-window.addEventListener("hashchange", () => {
-  console.log("hash changed");
-  route("app");
-});
-
-// console.log(window.location.pathname);
+})

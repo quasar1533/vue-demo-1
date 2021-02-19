@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+  <title>Document</title>
+  <style>
+    .list-item {
+      display: block;
+      margin-bottom: 2px;
+      border: 1px solid blue;
+      width: 300px;
+    }
+
+    .list-enter-active,
+    .list-leave-active {
+      transition: all 1s;
+    }
+
+    .list-enter,
+    .list-leave-to {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="list-demo" class="demo">
+    <button v-on:click="add">Add</button>
+    <button v-on:click="remove">Remove</button>
+    <transition-group name="list" tag="p">
+      <div v-for="item in items" v-bind:key="item" class="list-item">
+        {{ item }}
+      </div>
+    </transition-group>
+  </div>
+  <script src="./index7.js"></script>
+</body>
+
+</html>

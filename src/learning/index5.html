@@ -5,27 +5,143 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://unpkg.com/vue/dist/vue.js"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+  <style>
+    .fade1-enter-active,
+    .fade1-leave-active {
+      transition: all 1s;
+    }
+
+    .fade1-enter {
+      opacity: 0;
+    }
+
+    .fade1-leave-to {
+      opacity: 0;
+    }
+
+    .fade11-enter-active,
+    .fade11-leave-active {
+      transition: all 1s;
+    }
+
+    .fade11-enter {
+      opacity: 0;
+    }
+
+    .fade11-leave-to {
+      opacity: 0;
+    }
+
+    #app {
+      position: relative;
+    }
+
+    #a1 {
+      position: absolute;
+    }
+
+    #a2 {
+      margin-top: 30px;
+    }
+
+    .fade2-enter-active,
+    .fade2-leave-active {
+      transition: all 1s;
+    }
+
+    .fade2-enter {
+      opacity: 0;
+    }
+
+    .fade2-leave-to {
+      opacity: 0;
+    }
+
+    .fade3-enter-active,
+    .fade3-leave-active {
+      transition: all 1s;
+    }
+
+    .fade3-enter {
+      opacity: 0;
+    }
+
+    .fade3-leave-to {
+      opacity: 0;
+    }
+
+    .fade4-enter-active,
+    .fade4-leave-active {
+      transition: all 1s;
+    }
+
+    .fade4-enter {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+
+    .fade4-leave-to {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+
+    .fade5-enter-active,
+    .fade5-leave-active {
+      transition: all 1s;
+    }
+
+    .fade5-enter {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+
+    .fade5-leave-to {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+
+    #a5 {
+      position: relative;
+    }
+
+    #a5 button {
+      position: absolute;
+      margin-top: 10px;
+    }
+  </style>
   <title>Document</title>
 </head>
 
 <body>
   <div id="app">
-    <h1>Hello App!</h1>
-    <p>
-      <!-- 使用 router-link 组件来导航. -->
-      <!-- 通过传入 `to` 属性指定链接. -->
-      <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
-      <router-link to="/1">Go to Div1</router-link>
-      <router-link to="/2">Go to Div2</router-link>
-    </p>
-    <!-- 路由出口 -->
-    <!-- 路由匹配到的组件将渲染在这里 -->
-    <router-view></router-view>
+    <transition name="fade1">
+      <!-- <button v-if="status === 'on'" key="on">on</button>
+      <button v-else key="off">off</button> -->
+      <button :key="status1" @click="change1">{{ status1 }}</button>
+    </transition>
+    <hr>
+    <transition name="fade11">
+      <button id="a1" :key="status11" @click="change11">{{ status11 }}</button>
+    </transition>
+    <transition name="fade2" mode="out-in">
+      <button id="a2" :key="status2" @click="change2">{{ status2 }}</button>
+    </transition>
+    <hr>
+    <transition name="fade3" mode="in-out">
+      <button :key="status3" @click="change3">{{ status3 }}</button>
+    </transition>
+    <hr>
+    <transition name="fade4" mode="in-out">
+      <button :key="status4" @click="change4">{{ status4 }}</button>
+    </transition>
+    <div id="a5">
+      <transition name="fade5">
+        <button :key="status5" @click="change5">{{ status5 }}</button>
+      </transition>
+    </div>
   </div>
-
-  <script src="../index5.js"></script>
+  <script src="./index5.js"></script>
 </body>
 
 </html>

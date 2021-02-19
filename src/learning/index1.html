@@ -6,22 +6,47 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+  <style>
+
+    p {
+      width: 300px;
+    }
+
+    .fade-enter {
+      background: red;
+    }
+    .fade-enter-active {
+      transition: all 10s;
+    }
+    .fade-enter-to {
+      background: #000;
+    }
+    .fade-leave {
+      /* 这个过渡类几乎没什么用 */
+    }
+    .fade-leave-active {
+      transition: all 1.5s;
+    }
+    .fade-leave-to {
+      background: green;
+    }
+  </style>
 </head>
 
 <body>
-  <div>
-    <a href="#1">to 1</a>
-    <a href="#2">to 2</a>
-    <a href="#3">to 3</a>
-    <a href="#4">to 4</a>
+  <div id="demo">
+    <button v-on:click="show = !show">
+      Toggle
+    </button>
+    <transition name="fade">
+      <p v-if="show">hello</p>
+    </transition>
+    <div>1</div>
+    <div></div>
+    <div>1</div>
   </div>
-  <div id="app"></div>
-  <div id="div1" style="display: none;">1</div>
-  <div id="div2" style="display: none;">2</div>
-  <div id="div3" style="display: none;">3</div>
-  <div id="div4" style="display: none;">4</div>
-  <div id="div404" style="display: none;">404 Not Found</div>
-  <script src="../index1.js"></script>
+  <script src="./index1.js"></script>
 </body>
 
 </html>

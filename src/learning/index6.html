@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+  <style>
+    .component-fade-enter-active,
+    .component-fade-leave-active {
+      transition: opacity .3s ease;
+    }
+
+    .component-fade-enter,
+    .component-fade-leave-to {
+      opacity: 0;
+    }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="transition-components-demo">
+    <div>
+      <label>
+        <input type="radio" name="component" v-model="view" value="v-a">
+        <span>A</span>
+      </label>
+      <label>
+        <input type="radio" name="component" v-model="view" value="v-b">
+        <span>B</span>
+      </label>
+    </div>
+    <transition name="component-fade" mode="out-in">
+      <component v-bind:is="view"></component>
+    </transition>
+  </div>
+  <script src="./index6.js"></script>
+</body>
+
+</html>

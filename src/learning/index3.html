@@ -5,20 +5,51 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+  <link href="https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" type="text/css">
+  <style>
+    .bounce-enter-active {
+      animation: bounce-in .5s;
+    }
+
+    .bounce-leave-active {
+      animation: bounce-in .5s reverse;
+    }
+
+    @keyframes bounce-in {
+      0% {
+        transform: scale(0);
+      }
+
+      50% {
+        transform: scale(1.5);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
   <title>Document</title>
 </head>
 
 <body>
-  <div>
-    <a href="/1" class="history">to 1</a>
-    <a href="/2" class="history">to 2</a>
-    <a href="/3" class="history">to 3</a>
-    <a href="/4" class="history">to 4</a>
+  <div id="example-2">
+    <button @click="show = !show">Toggle show</button>
+    <transition name="bounce">
+      <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia
+        diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
+    </transition>
+    <hr>
+    <button @click="show2 = !show2">
+      Toggle render
+    </button>
+    <transition name="custom-classes-transition" enter-active-class="animate__animated animate__tada"
+      leave-active-class="animate__animated animate__bounceOutRight">
+      <p v-if="show2">hello</p>
+    </transition>
   </div>
-  <div id="app"></div>
- 
-  <div id="div404" style="display: none;">404 Not Found</div>
-  <script src="../index3.js"></script>
+  <script src="./index3.js"></script>
 </body>
 
 </html>

@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-
+    <Example1 />
   </div>
 </template>
 
 <script>
 // import HelloWorld from "./components/HelloWorld.vue";
-// import Example1 from "./example1.vue";
+import Example1 from "./example1.vue";
 // import Example2 from "./example2.vue";
 // import Example3 from "./example3.vue";
 
@@ -14,7 +14,7 @@ export default {
   name: "App",
   components: {
     // HelloWorld,
-    // Example1,
+    Example1,
   },
   data() {
     return {
